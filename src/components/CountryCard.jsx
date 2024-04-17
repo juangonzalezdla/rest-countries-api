@@ -2,7 +2,7 @@ export default function ({ img, countryName, population, region, capital }) {
   const formatedPopulation = population.toLocaleString();
 
   return (
-    <div className='bg-slate-400 w-full rounded-md'>
+    <div className='bg-white w-full rounded-md shadow-md transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300'>
       <figure className='w-full'>
         <img className="w-full" src={img} alt='' />
       </figure>
