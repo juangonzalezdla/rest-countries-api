@@ -7,8 +7,8 @@ export default function Header() {
         <h1 className='font-bold text-xl'>Where in the world?</h1>
 
         <div className='font-medium text-base'>
-          <i class='bx bxs-moon'></i>
-          <i class='bx bxs-sun'></i>
+          <i className='bx bxs-moon'></i>
+          <i className='bx bxs-sun'></i>
           Dark mode
         </div>
       </div>

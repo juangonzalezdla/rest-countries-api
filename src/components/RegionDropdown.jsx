@@ -15,9 +15,9 @@ export default function RegionDropdown() {
       >
         Filter by Region
         {clickOnfilter ? (
-          <i class='bx bx-chevron-up text-xl'></i>
+          <i className='bx bx-chevron-up text-xl'></i>
         ) : (
-          <i class='bx bx-chevron-down text-xl'></i>
+          <i className='bx bx-chevron-down text-xl'></i>
         )}
       </button>
 
