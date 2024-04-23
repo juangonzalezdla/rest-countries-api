@@ -16,4 +16,5 @@
 body {
   background-color: var(--light-gray);
   font-family: var(--nunito);
+  color: var(--dark-blue-text);
 }

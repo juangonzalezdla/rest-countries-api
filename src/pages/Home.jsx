@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Main from '../components/Main';
 import CountryCard from '../components/CountryCard';
@@ -6,9 +6,9 @@ import Filters from '../components/Filters';
 
 export default function Home() {
   const [countries, setCountries] = useState([]);
-  //const [filteredCountries, setFilteredCountries] = useState([]);
-  //const [searchInput, setSearchInput] = useState('');
-  //const [regionFilter, setRegionFilter] = useState('');
+  const [filteredCountries, setFilteredCountries] = useState([]);
+  const [searchInput, setSearchInput] = useState('');
+  const [regionFilter, setRegionFilter] = useState('');
   const [page, setPage] = useState(0);
   const pageSize = 100;
 
@@ -22,10 +22,13 @@ export default function Home() {
       const sortedCountries = data.sort((a, b) =>
         a.name.common.localeCompare(b.name.common)
       );
-      const slicedCountries = sortedCountries.slice(page * pageSize, (page + 1) * pageSize);
-      
-      setCountries([...countries, ...slicedCountries])
-      console.log(countries)
+      const slicedCountries = sortedCountries.slice(
+        page * pageSize,
+        (page + 1) * pageSize
+      );
+
+      setCountries([...countries, ...slicedCountries]);
+      console.log(countries);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -33,7 +36,7 @@ export default function Home() {
 
   useEffect(() => {
     fetchData();
-  }, [page])
+  }, [page]);
 
   const handleLoadMore = () => {
     setPage(page + 1);
@@ -61,25 +64,30 @@ export default function Home() {
       <Main>
         <Filters />
 
-          {countries.length > 0 ? (
-            <section className='grid grid-cols-4 gap-10'>
-              {countries.map((country) => (
-                <CountryCard
-                  key={country.name.common}
-                  img={country.flags.png}
-                  countryName={country.name.common}
-                  population={country.population}
-                  region={country.region}
-                  capital={country.capital}
-                />
-              ))}
-            </section>
-          ) : (
-            <div>cargando...</div>
-          )}
-        
+        {countries.length > 0 ? (
+          <section className='grid grid-cols-4 gap-12'>
+            {countries.map((country) => (
+              <CountryCard
+                key={country.name.common}
+                img={country.flags.png}
+                countryName={country.name.common}
+                population={country.population}
+                region={country.region}
+                capital={country.capital}
+              />
+            ))}
+          </section>
+        ) : (
+          <div>cargando...</div>
+        )}
+
         {page < 2 && (
-          <button onClick={handleLoadMore}>Cargar más</button>
+          <button
+            className='bg-white my-10 py-3 px-10 text-sm font-bold rounded-md shadow-lg'
+            onClick={handleLoadMore}
+          >
+            Mostrar más
+          </button>
         )}
       </Main>
     </>

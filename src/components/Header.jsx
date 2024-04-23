@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default function Header() {
   return (
     <header className='bg-white py-2 px-14 shadow-md'>
@@ -13,5 +11,5 @@ export default function Header() {
         </div>
       </div>
     </header>
-  )
+  );
 }
