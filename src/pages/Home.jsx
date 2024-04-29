@@ -22,13 +22,7 @@ export default function Home() {
       const sortedCountries = data.sort((a, b) =>
         a.name.common.localeCompare(b.name.common)
       );
-      const slicedCountries = sortedCountries.slice(
-        page * pageSize,
-        (page + 1) * pageSize
-      );
-
-      setCountries([...countries, ...slicedCountries]);
-      console.log(countries);
+      setCountries(sortedCountries);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -36,37 +30,39 @@ export default function Home() {
 
   useEffect(() => {
     fetchData();
-  }, [page]);
+  }, []);
+
+  useEffect(() => {
+    const filtered = countries.filter(
+      (country) =>
+        country.name.common.toLowerCase().includes(searchInput.toLowerCase()) &&
+        country.region.toLowerCase().includes(regionFilter.toLowerCase())
+    );
+    setFilteredCountries(filtered);
+  }, [countries, searchInput, regionFilter]);
+
+  const paginatedCountries = filteredCountries.slice(0, (page + 1) * pageSize);
 
   const handleLoadMore = () => {
     setPage(page + 1);
   };
 
-  /*const handleSearch = (e) => {
-    setSearchInput(e.target.value);
-    const filtered = countries.filter((country) =>
-      country.name.common.toLowerCase().includes(e.target.value.toLowerCase())
-    );
-    setFilteredCountries(filtered);
-  };
-
-  const handleRegionFilter = (e) => {
-    setRegionFilter(e.target.value);
-    const filtered = countries.filter((country) =>
-      country.region.toLowerCase().includes(e.target.value.toLowerCase())
-    );
-    setFilteredCountries(filtered);
-  };*/
-
   return (
     <>
       <Header />
       <Main>
-        <Filters />
+        <Filters
+          filterText={searchInput}
+          setFilterText={setSearchInput}
+          regionFilter={regionFilter}
+          setRegionFilter={setRegionFilter}
+          countries={countries}
+          setFilteredCountries={setFilteredCountries}
+        />
 
-        {countries.length > 0 ? (
+        {paginatedCountries.length > 0 ? (
           <section className='grid grid-cols-4 gap-12'>
-            {countries.map((country) => (
+            {paginatedCountries.map((country) => (
               <CountryCard
                 key={country.name.common}
                 img={country.flags.png}
@@ -78,10 +74,10 @@ export default function Home() {
             ))}
           </section>
         ) : (
-          <div>cargando...</div>
+          <div>No se encontraron países para la región seleccionada.</div>
         )}
 
-        {page < 2 && (
+        {paginatedCountries.length >= pageSize && page < 2 && (
           <button
             className='bg-white my-10 py-3 px-10 text-sm font-bold rounded-md shadow-lg'
             onClick={handleLoadMore}

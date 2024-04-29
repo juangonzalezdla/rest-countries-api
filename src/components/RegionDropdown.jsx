@@ -1,10 +1,18 @@
 import { useState } from 'react';
 
-export default function RegionDropdown() {
+export default function RegionDropdown({ countries, setFilteredCountries }) {
   const [clickOnfilter, setClickOnFilter] = useState(false);
 
   const handleClick = () => {
     setClickOnFilter(!clickOnfilter);
+  };
+
+  const handleRegionChange = (region) => {
+    const filtered = countries.filter(
+      (country) => country.region.toLowerCase() === region.toLowerCase()
+    );
+    setFilteredCountries(filtered);
+    setClickOnFilter(false); // Cerrar el dropdown después de seleccionar una región
   };
 
   return (
@@ -22,16 +30,28 @@ export default function RegionDropdown() {
       </button>
 
       {clickOnfilter && (
-        <div className='bg-white absolute w-48 mt-2 py-3 px-4 shadow-md rounded-md z-10 font-medium text-sm'>
+        <div className='bg-white absolute w-48 mt-2 shadow-md rounded-md z-10 font-medium text-sm'>
           <ul className='flex flex-col gap-2'>
-            <li>Africa</li>
-            <li>America</li>
-            <li>Asia</li>
-            <li>Europe</li>
-            <li>Ocenia</li>
+            {regions.map((region) => (
+              <li
+                className='hover:bg-light-gray px-4 py-2 cursor-pointer'
+                key={region.id}
+                onClick={() => handleRegionChange(region.name)}
+              >
+                {region.name}
+              </li>
+            ))}
           </ul>
         </div>
       )}
     </div>
   );
 }
+
+const regions = [
+  { id: 1, name: 'Africa' },
+  { id: 2, name: 'Americas' },
+  { id: 3, name: 'Asia' },
+  { id: 4, name: 'Europe' },
+  { id: 5, name: 'Oceania' },
+];
