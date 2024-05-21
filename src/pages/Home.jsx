@@ -74,7 +74,7 @@ export default function Home() {
             ))}
           </section>
         ) : (
-          <div>No se encontraron países para la región seleccionada.</div>
+          <div>No se encontraron países.</div>
         )}
 
         {paginatedCountries.length >= pageSize && page < 2 && (
