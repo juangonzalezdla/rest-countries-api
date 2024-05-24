@@ -1,20 +1,18 @@
 import { Link } from 'react-router-dom';
 
-export default function ({
-  img,
-  countryName,
-  population,
-  region,
-  capital,
-  link,
-}) {
+export default function ({ img, countryName, population, region, capital }) {
   const formatedPopulation = population.toLocaleString();
+  const countryLink = `/country/${countryName}`;
 
   return (
-    <Link to={link}>
+    <Link to={countryLink}>
       <div className='bg-white w-full rounded-md shadow-md transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300'>
         <figure className='w-full'>
-          <img className='w-full h-40 rounded-t-md' src={img} alt='' />
+          <img
+            className='w-full h-40 rounded-t-md'
+            src={img}
+            alt='Image of some country'
+          />
         </figure>
 
         <div className='p-4 flex flex-col justify-start items-start'>

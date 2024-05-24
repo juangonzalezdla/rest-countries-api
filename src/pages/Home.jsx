@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import Main from '../components/Main';
 import CountryCard from '../components/CountryCard';
 import Filters from '../components/Filters';
+import { Spinner } from 'flowbite-react';
 
 export default function Home() {
   const [countries, setCountries] = useState([]);
@@ -11,6 +12,7 @@ export default function Home() {
   const [regionFilter, setRegionFilter] = useState('');
   const [page, setPage] = useState(0);
   const pageSize = 100;
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchData = async () => {
     try {
@@ -23,8 +25,10 @@ export default function Home() {
         a.name.common.localeCompare(b.name.common)
       );
       setCountries(sortedCountries);
+      setIsLoading(false);
     } catch (error) {
       console.error('Error fetching data:', error);
+      setIsLoading(false);
     }
   };
 
@@ -46,6 +50,14 @@ export default function Home() {
   const handleLoadMore = () => {
     setPage(page + 1);
   };
+
+  if (isLoading) {
+    return (
+      <div className='fixed top-0 left-0 w-full h-full bg-white flex justify-center items-center transition duration-200 ease-linear opacity-100 visible z-30'>
+        <Spinner className='w-20 h-20' />
+      </div>
+    );
+  }
 
   return (
     <>

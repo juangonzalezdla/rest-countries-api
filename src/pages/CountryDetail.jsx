@@ -2,10 +2,11 @@ import { Link, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Main from '../components/Main';
+import { Spinner } from 'flowbite-react';
 
 export default function CountryDetail() {
-  /*const { name } = useParams();
-  const [CountryDetail, setCountryDetail] = useState(null);
+  const { name } = useParams();
+  const [countryDetail, setCountryDetail] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchData = async () => {
@@ -16,8 +17,9 @@ export default function CountryDetail() {
       }
       const data = await res.json();
       if (data.length > 0) {
-        setCountryDetails(data[0]); // El endpoint devuelve un array, tomamos el primer elemento
+        setCountryDetail(data[0]); // El endpoint devuelve un array, tomamos el primer elemento
         setIsLoading(false);
+        console.log(data);
       } else {
         throw new Error('Country not found.');
       }
@@ -29,15 +31,33 @@ export default function CountryDetail() {
 
   useEffect(() => {
     fetchData();
-  }, [name]);
+  }, []);
 
   if (isLoading) {
-    return <div>Cargando...</div>;
+    return (
+      <div className='fixed top-0 left-0 w-full h-full bg-white flex justify-center items-center transition duration-200 ease-linear opacity-100 visible z-30'>
+        <Spinner className='w-20 h-20' />
+      </div>
+    );
   }
 
-  if (!countryDetails) {
+  if (!countryDetail) {
     return <div>No se encontraron detalles para este país.</div>;
-  }*/
+  }
+
+  const nativeName = countryDetail.name.nativeName
+    ? Object.values(countryDetail.name.nativeName)[0].common
+    : '';
+
+  const currencies = countryDetail.currencies
+    ? Object.values(countryDetail.currencies)
+        .map((currency) => currency.name)
+        .join(', ')
+    : '';
+
+  const languages = countryDetail.languages
+    ? Object.values(countryDetail.languages).join(', ')
+    : '';
 
   return (
     <div>
@@ -50,58 +70,70 @@ export default function CountryDetail() {
           </button>
         </Link>
 
-        <section className='grid grid-cols-2 gap-14 h-80'>
-          <figure>
-            <img src='' alt='' />
+        <section className='grid grid-cols-2 gap-24 h-80'>
+          <figure className='w-full'>
+            <img
+              className='w-full'
+              src={countryDetail.flags.png}
+              alt='Image of some country'
+            />
           </figure>
 
           <div className='py-5'>
-            <h1 className='text-xl mb-5'>(CountryName)</h1>
+            <h1 className='text-xl font-bold mb-5'>
+              {countryDetail.name.common}
+            </h1>
 
             <div className='flex gap-20 mb-10'>
               <article className='flex flex-col gap-2'>
                 <p className='text-sm'>
                   <span className='font-bold mr-2'>Native Name:</span>
-                  (Native Name)
+                  {nativeName}
                 </p>
                 <p className='text-sm'>
                   <span className='font-bold mr-2'>Population:</span>
-                  (Population)
+                  {countryDetail.population.toLocaleString()}
                 </p>
                 <p className='text-sm'>
                   <span className='font-bold mr-2'>Region:</span>
-                  (Region)
+                  {countryDetail.region}
                 </p>
                 <p className='text-sm'>
                   <span className='font-bold mr-2'>Sub Region:</span>
-                  (Sub Region)
+                  {countryDetail.subregion}
                 </p>
                 <p className='text-sm'>
                   <span className='font-bold mr-2'>Capital:</span>
-                  (Capital)
+                  {countryDetail.capital}
                 </p>
               </article>
               <article className='flex flex-col gap-2'>
                 <p className='text-sm'>
                   <span className='font-bold mr-2'>Top Level Domain:</span>
-                  (Top Level Domain)
+                  {countryDetail.tld.join(', ')}
                 </p>
                 <p className='text-sm'>
                   <span className='font-bold mr-2'>Currencies:</span>
-                  (Currencies)
+                  {currencies}
                 </p>
                 <p className='text-sm'>
                   <span className='font-bold mr-2'>Languages:</span>
-                  (Languages)
+                  {languages}
                 </p>
               </article>
             </div>
 
             <div className='flex items-center gap-2'>
               <span className='text-sm font-bold'>Border Countries:</span>
-              <spam className='bg-white text-sm p-2 shadow-sm rounded-md'>France</spam>
-              <spam className='bg-white text-sm p-2 shadow-sm rounded-md'>Germany</spam>
-              <spam className='bg-white text-sm p-2 shadow-sm rounded-md'>Netherlands</spam>
+              <span className='bg-white text-sm p-2 shadow-sm rounded-md'>
+                France
+              </span>
+              <span className='bg-white text-sm p-2 shadow-sm rounded-md'>
+                Germany
+              </span>
+              <span className='bg-white text-sm p-2 shadow-sm rounded-md'>
+                Netherlands
+              </span>
             </div>
           </div>
         </section>
