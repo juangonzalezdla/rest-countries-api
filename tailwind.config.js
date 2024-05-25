@@ -2,6 +2,7 @@ const flowbite = require("flowbite-react/tailwind");
 
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class',
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
@@ -16,6 +17,7 @@ export default {
         'dark-blue': 'hsl(var(--dark-blue))',
         'dark-blue-background': 'hsl(var(--dark-blue-background))',
         'dark-blue-text': 'hsl(var(--dark-blue-text))',
+        'dark-blue-hover': 'hsl(var(--dark-blue-hover))',
       }
     },
   },

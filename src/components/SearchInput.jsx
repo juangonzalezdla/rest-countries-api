@@ -9,7 +9,7 @@ export default function SearchInput({ filterText, setFilterText }) {
         <i className='bx bx-search-alt-2 bx-sm'></i>
       </div>
       <input
-        className='w-full block px-3 py-4 ps-16 text-sm rounded-md border-none focus:ring-0'
+        className='w-full block px-3 py-4 ps-16 text-sm rounded-md border-none focus:ring-0 dark:bg-dark-blue'
         type='text'
         placeholder='Search for a country...'
         value={filterText}

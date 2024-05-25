@@ -91,7 +91,7 @@ export default function Home() {
 
         {paginatedCountries.length >= pageSize && page < 2 && (
           <button
-            className='bg-white my-10 py-3 px-10 text-sm font-bold rounded-md shadow-lg'
+            className='bg-white my-10 py-3 px-10 text-sm font-bold rounded-md shadow-lg dark:bg-dark-blue'
             onClick={handleLoadMore}
           >
             Mostrar más

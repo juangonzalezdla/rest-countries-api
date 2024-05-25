@@ -1,5 +1,13 @@
 import { useState } from 'react';
 
+const regions = [
+  { id: 1, name: 'Africa' },
+  { id: 2, name: 'Americas' },
+  { id: 3, name: 'Asia' },
+  { id: 4, name: 'Europe' },
+  { id: 5, name: 'Oceania' },
+];
+
 export default function RegionDropdown({ countries, setFilteredCountries }) {
   const [clickOnfilter, setClickOnFilter] = useState(false);
 
@@ -18,7 +26,7 @@ export default function RegionDropdown({ countries, setFilteredCountries }) {
   return (
     <div>
       <button
-        className='bg-white w-48 flex justify-between items-center py-3 px-4 shadow-md rounded-md cursor-pointer font-medium text-sm'
+        className='bg-white w-48 flex justify-between items-center py-3 px-4 shadow-md rounded-md cursor-pointer font-medium text-sm dark:bg-dark-blue'
         onClick={handleClick}
       >
         Filter by Region
@@ -30,11 +38,11 @@ export default function RegionDropdown({ countries, setFilteredCountries }) {
       </button>
 
       {clickOnfilter && (
-        <div className='bg-white absolute w-48 mt-2 shadow-md rounded-md z-10 font-medium text-sm'>
+        <div className='bg-white absolute w-48 mt-2 shadow-md rounded-md z-10 font-medium text-sm dark:bg-dark-blue'>
           <ul className='flex flex-col gap-2'>
             {regions.map((region) => (
               <li
-                className='hover:bg-light-gray px-4 py-2 cursor-pointer'
+                className='hover:bg-light-gray px-4 py-2 cursor-pointer hover:dark:bg-dark-blue-hover'
                 key={region.id}
                 onClick={() => handleRegionChange(region.name)}
               >
@@ -47,11 +55,3 @@ export default function RegionDropdown({ countries, setFilteredCountries }) {
     </div>
   );
 }
-
-const regions = [
-  { id: 1, name: 'Africa' },
-  { id: 2, name: 'Americas' },
-  { id: 3, name: 'Asia' },
-  { id: 4, name: 'Europe' },
-  { id: 5, name: 'Oceania' },
-];

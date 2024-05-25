@@ -60,11 +60,11 @@ export default function CountryDetail() {
     : '';
 
   return (
-    <div>
+    <div className='w-full h-full bg-light-gray'>
       <Header />
       <Main>
-        <Link to={'/'}>
-          <button className='w-28 flex items-center justify-center gap-2 bg-white font-medium py-1 px-2 shadow-md hover:shadow-lg rounded-md  mb-20 mt-10'>
+        <Link className='w-28 block' to={'/'}>
+          <button className='w-28 flex items-center justify-center gap-2 bg-white font-medium py-1 px-2 shadow-md hover:shadow-lg rounded-md mb-20 dark:bg-dark-blue'>
             <i className='bx bx-arrow-back'></i>
             Back
           </button>
@@ -73,7 +73,7 @@ export default function CountryDetail() {
         <section className='grid grid-cols-2 gap-24 h-80'>
           <figure className='w-full'>
             <img
-              className='w-full'
+              className='w-full h-80'
               src={countryDetail.flags.png}
               alt='Image of some country'
             />
@@ -125,7 +125,7 @@ export default function CountryDetail() {
 
             <div className='flex items-center gap-2'>
               <span className='text-sm font-bold'>Border Countries:</span>
-              <span className='bg-white text-sm p-2 shadow-sm rounded-md'>
+              <span className='bg-white text-sm p-2 shadow-sm rounded-md dark:bg-dark-blue'>
                 France
               </span>
               <span className='bg-white text-sm p-2 shadow-sm rounded-md'>
