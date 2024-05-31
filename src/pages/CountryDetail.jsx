@@ -70,7 +70,7 @@ export default function CountryDetail() {
           </button>
         </Link>
 
-        <section className='grid grid-cols-2 gap-24 h-80'>
+        <section className='grid grid-cols-2 gap-24 h-full max-lg:grid-cols-1 max-lg:gap-10'>
           <figure className='w-full'>
             <img
               className='w-full h-80'
@@ -84,7 +84,7 @@ export default function CountryDetail() {
               {countryDetail.name.common}
             </h1>
 
-            <div className='flex gap-20 mb-10'>
+            <div className='flex gap-20 mb-10 max-lg:flex-col max-lg:gap-10'>
               <article className='flex flex-col gap-2'>
                 <p className='text-sm'>
                   <span className='font-bold mr-2'>Native Name:</span>
@@ -123,17 +123,27 @@ export default function CountryDetail() {
               </article>
             </div>
 
-            <div className='flex items-center gap-2'>
-              <span className='text-sm font-bold'>Border Countries:</span>
-              <span className='bg-white text-sm p-2 shadow-sm rounded-md dark:bg-dark-blue'>
-                France
-              </span>
-              <span className='bg-white text-sm p-2 shadow-sm rounded-md'>
-                Germany
-              </span>
-              <span className='bg-white text-sm p-2 shadow-sm rounded-md'>
-                Netherlands
-              </span>
+            <div className='flex items-center gap-2 flex-wrap'>
+              <div>
+                <span className='text-sm font-bold'>Border Countries:</span>
+              </div>
+              <div className='flex gap-2 flex-wrap'>
+                <span className='bg-white text-sm p-2 shadow-sm rounded-md dark:bg-dark-blue'>
+                  France
+                </span>
+                <span className='bg-white text-sm p-2 shadow-sm rounded-md'>
+                  Germany
+                </span>
+                <span className='bg-white text-sm p-2 shadow-sm rounded-md'>
+                  Netherlands
+                </span>
+                <span className='bg-white text-sm p-2 shadow-sm rounded-md'>
+                  Netherlands
+                </span>
+                <span className='bg-white text-sm p-2 shadow-sm rounded-md'>
+                  Netherlands
+                </span>
+              </div>
             </div>
           </div>
         </section>
