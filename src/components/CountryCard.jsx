@@ -17,15 +17,15 @@ export default function ({ img, countryName, population, region, capital }) {
 
         <div className='p-4 flex flex-col justify-start items-start'>
           <h2 className='mb-2 font-extrabold text-lg'>{countryName}</h2>
-          <p className='text-sm'>
+          <p className='text-sm mb-1'>
             <span className='font-bold mr-2'>Population:</span>
             {formatedPopulation}
           </p>
-          <p className='text-sm'>
+          <p className='text-sm mb-1'>
             <span className='font-bold mr-2'>Region:</span>
             {region}
           </p>
-          <p className='text-sm'>
+          <p className='text-sm mb-1'>
             <span className='font-bold mr-2'>Capital:</span>
             {capital}
           </p>
