@@ -9,7 +9,7 @@ export default function ({ img, countryName, population, region, capital }) {
       <div className='bg-white w-full rounded-md shadow-md transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 dark:bg-dark-blue'>
         <figure className='w-full'>
           <img
-            className='w-full h-40 rounded-t-md'
+            className='w-full h-40 rounded-t-md max-md:h-52'
             src={img}
             alt='Image of some country'
           />
