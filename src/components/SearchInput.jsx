@@ -4,7 +4,7 @@ export default function SearchInput({ filterText, setFilterText }) {
   };
 
   return (
-    <div className='relative shadow-md w-96'>
+    <div className='relative shadow-md w-full'>
       <div className='absolute inset-y-0 start-0 flex items-center ps-5'>
         <i className='bx bx-search-alt-2 bx-sm'></i>
       </div>

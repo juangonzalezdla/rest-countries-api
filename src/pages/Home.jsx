@@ -73,7 +73,7 @@ export default function Home() {
         />
 
         {paginatedCountries.length > 0 ? (
-          <section className='grid grid-cols-4 gap-12'>
+          <section className='grid grid-cols-4 gap-12 max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1'>
             {paginatedCountries.map((country) => (
               <CountryCard
                 key={country.name.common}
