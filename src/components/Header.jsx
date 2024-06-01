@@ -23,7 +23,7 @@ export default function Header() {
   };
 
   return (
-    <header className='bg-white py-2 px-14 shadow-md text-dark-blue-text dark:bg-dark-blue dark:text-white max-md:px-4'>
+    <header className='bg-white py-2 px-14 shadow-md text-dark-blue-text transition ease-linear duration-300 dark:bg-dark-blue dark:text-white max-md:px-4'>
       <div className='w-full max-w-[1440px] my-0 mx-auto h-14 flex justify-between items-center'>
         <h1 className='font-bold text-xl'>Where in the world?</h1>
 

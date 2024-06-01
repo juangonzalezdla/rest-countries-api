@@ -10,7 +10,7 @@ export default function Filters({
   setFilteredCountries,
 }) {
   return (
-    <section className='flex justify-between items-center gap-80 mb-10 max-md:flex-col max-md:items-start max-md:gap-5'>
+    <section className='flex justify-between items-center gap-80 mb-10 transition ease-linear duration-300 max-md:flex-col max-md:items-start max-md:gap-5'>
       <SearchInput filterText={filterText} setFilterText={setFilterText} />
       <RegionDropdown
         regionFilter={regionFilter}

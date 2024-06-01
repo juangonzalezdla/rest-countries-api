@@ -42,7 +42,7 @@ export default function CountryDetail() {
   }
 
   if (!countryDetail) {
-    return <div>No se encontraron detalles para este país.</div>;
+    return <div className='dark:bg-dark-blue'>No se encontraron detalles para este país.</div>;
   }
 
   const nativeName = countryDetail.name.nativeName
