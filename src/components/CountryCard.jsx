@@ -2,11 +2,11 @@ import { Link } from 'react-router-dom';
 
 export default function ({ img, countryName, population, region, capital }) {
   const formatedPopulation = population.toLocaleString();
-  const countryLink = `/country/${countryName}`;
+  const countryLink = `/country/${encodeURIComponent(countryName)}`;
 
   return (
     <Link to={countryLink}>
-      <div className='bg-white w-full rounded-md shadow-md transition ease-linear duration-300 dark:bg-dark-blue'>
+      <div className='bg-white w-full rounded-md shadow-md transition ease-in-out duration-300 hover:-translate-y-1 hover:scale-110 dark:bg-dark-blue'>
         <figure className='w-full'>
           <img
             className='w-full h-40 rounded-t-md max-md:h-52'

@@ -9,7 +9,6 @@ export default function Home() {
   const [countries, setCountries] = useState([]);
   const [filteredCountries, setFilteredCountries] = useState([]);
   const [searchInput, setSearchInput] = useState('');
-  const [regionFilter, setRegionFilter] = useState('');
   const [page, setPage] = useState(0);
   const pageSize = 100;
   const [isLoading, setIsLoading] = useState(true);
@@ -37,13 +36,11 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const filtered = countries.filter(
-      (country) =>
-        country.name.common.toLowerCase().includes(searchInput.toLowerCase()) &&
-        country.region.toLowerCase().includes(regionFilter.toLowerCase())
+    const filtered = countries.filter((country) =>
+      country.name.common.toLowerCase().includes(searchInput.toLowerCase())
     );
     setFilteredCountries(filtered);
-  }, [countries, searchInput, regionFilter]);
+  }, [countries, searchInput]);
 
   const paginatedCountries = filteredCountries.slice(0, (page + 1) * pageSize);
 
@@ -60,14 +57,12 @@ export default function Home() {
   }
 
   return (
-    <>
+    <div className='w-full min-h-screen bg-light-gray text-dark-blue-text dark:bg-dark-blue-background dark:text-white'>
       <Header />
       <Main>
         <Filters
           filterText={searchInput}
           setFilterText={setSearchInput}
-          regionFilter={regionFilter}
-          setRegionFilter={setRegionFilter}
           countries={countries}
           setFilteredCountries={setFilteredCountries}
         />
@@ -86,18 +81,22 @@ export default function Home() {
             ))}
           </section>
         ) : (
-          <div>No se encontraron países.</div>
+          <p className='text-lg font-semibold text-center'>
+            No se encontraron países.
+          </p>
         )}
 
         {paginatedCountries.length >= pageSize && page < 2 && (
-          <button
-            className='bg-white my-10 py-3 px-10 text-sm font-bold rounded-md shadow-lg dark:bg-dark-blue'
-            onClick={handleLoadMore}
-          >
-            Mostrar más
-          </button>
+          <div className='flex items-center justify-center'>
+            <button
+              className='bg-white my-10 py-3 px-10 text-sm font-bold rounded-md shadow-lg dark:bg-dark-blue'
+              onClick={handleLoadMore}
+            >
+              Mostrar más
+            </button>
+          </div>
         )}
       </Main>
-    </>
+    </div>
   );
 }

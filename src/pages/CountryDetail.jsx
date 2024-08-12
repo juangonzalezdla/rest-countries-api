@@ -42,7 +42,11 @@ export default function CountryDetail() {
   }
 
   if (!countryDetail) {
-    return <div className='dark:bg-dark-blue'>No se encontraron detalles para este país.</div>;
+    return (
+      <p className='dtext-lg font-semibold text-center'>
+        No se encontraron detalles para este país.
+      </p>
+    );
   }
 
   const nativeName = countryDetail.name.nativeName
@@ -60,7 +64,7 @@ export default function CountryDetail() {
     : '';
 
   return (
-    <div className='w-full h-full bg-light-gray'>
+    <div className='w-full min-h-screen bg-light-gray text-dark-blue-text dark:bg-dark-blue-background dark:text-white'>
       <Header />
       <Main>
         <Link className='w-28 block' to={'/'}>
@@ -70,7 +74,7 @@ export default function CountryDetail() {
           </button>
         </Link>
 
-        <section className='grid grid-cols-2 gap-24 h-full max-lg:grid-cols-1 max-lg:gap-10'>
+        <section className='grid grid-cols-2 gap-24 max-lg:grid-cols-1 max-lg:gap-10'>
           <figure className='w-full'>
             <img
               className='w-full h-80'
@@ -128,21 +132,20 @@ export default function CountryDetail() {
                 <span className='text-sm font-bold'>Border Countries:</span>
               </div>
               <div className='flex gap-2 flex-wrap'>
-                <span className='bg-white text-sm p-2 shadow-sm rounded-md dark:bg-dark-blue'>
-                  France
-                </span>
-                <span className='bg-white text-sm p-2 shadow-sm rounded-md'>
-                  Germany
-                </span>
-                <span className='bg-white text-sm p-2 shadow-sm rounded-md'>
-                  Netherlands
-                </span>
-                <span className='bg-white text-sm p-2 shadow-sm rounded-md'>
-                  Netherlands
-                </span>
-                <span className='bg-white text-sm p-2 shadow-sm rounded-md'>
-                  Netherlands
-                </span>
+                {countryDetail.borders && countryDetail.borders.length > 0 ? (
+                  countryDetail.borders.map((borderCountry, index) => (
+                    <span
+                      key={index}
+                      className='bg-white text-sm p-2 shadow-sm rounded-md dark:bg-dark-blue'
+                    >
+                      {borderCountry}
+                    </span>
+                  ))
+                ) : (
+                  <span className='text-red-600'>
+                    No tiene paises fronterizos
+                  </span>
+                )}
               </div>
             </div>
           </div>
